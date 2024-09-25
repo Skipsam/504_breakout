@@ -28,14 +28,15 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 		
 		Timer timer = new Timer(5, this);
 		timer.start();
+		//create relevant and necessary objects
 		ball = new Ball();
 		paddle = new Paddle(); 
+		//create an array of brick objects totalling the amount specified in settings.java
 		bricks = new Brick[Settings.TOTAL_BRICKS];
+		//calls the create bricks method to create the bricks for the array
 		createBricks();
-		// Create a new bricks array (Use Settings.TOTAL_BRICKS)
-		//  Call the createBricks() method
 	}
-	
+			
 	private void createBricks() {
 		int counter = 0;
 		int x_space = 0;
@@ -52,9 +53,10 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 	}
 	
 	private void paintBricks(Graphics g) {
-		for (Brick brick : bricks) { // Loop through the bricks
+		// iterates through each brick in the array bricks and calls the paint method
+		for (Brick brick : bricks) { 
                 brick.paint(g);
-            }//Loop through the bricks and call the paint() method
+            }
            
             }
                 
@@ -161,16 +163,18 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
         paintBricks(g);
         
         // Draw lives left
+        //specify font, smaller than main messages 
         g.setFont(new Font("Arial",Font.BOLD,16));
+        //specify the colour
         g.setColor(Color.BLACK);
+        //add the texts, calls forth the remaining number of lives from the lives left variable and positions the text
         g.drawString("Lives: " + livesLeft, 10, 20 );
-        
-        //Draw lives left in the top left hand corner
         
         // Draw screen message
         if(screenMessage != null) {
         	g.setFont(new Font("Arial", Font.BOLD, 18));
         	int messageWidth = g.getFontMetrics().stringWidth(screenMessage);
+        	//displays the variable screen message to allow for streamlined code, centres the text 
         	g.drawString(screenMessage, (Settings.WINDOW_WIDTH / 2) - (messageWidth / 2), Settings.MESSAGE_POSITION);
         }
     }
@@ -188,6 +192,7 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		//stops movement if no key currently being pressed
 		paddle.setXVelocity(0);
 	}
 

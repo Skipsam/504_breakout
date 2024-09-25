@@ -5,12 +5,14 @@ public class Paddle extends Sprite {
 	private int xVelocity;
 	
 	public Paddle() {
+		//fetches dimensions of paddle from settings and calls methods from the parent class "Sprite"
 		setWidth(Settings.PADDLE_WIDTH);
 		setHeight(Settings.PADDLE_HEIGHT);
 		resetPosition();
 	}
 	
 	public void resetPosition() {
+		//fetches initial position of paddle from settings and calls methods from the parent class "Sprite"
 		x = Settings.INITIAL_PADDLE_X;
 		y = Settings.INITIAL_PADDLE_Y;
 		
@@ -18,9 +20,8 @@ public class Paddle extends Sprite {
 	
 	public void update() {
 		x += xVelocity;
-		
+		//prevents paddle position from exceeding the window in either direction
 		if (x >= (Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH)){
-			
 			x = (Settings.WINDOW_WIDTH- Settings.PADDLE_WIDTH);
 		}
 		
